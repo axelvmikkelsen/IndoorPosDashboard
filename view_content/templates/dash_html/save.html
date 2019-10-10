@@ -1,0 +1,69 @@
+{% load staticfiles %}
+  <div class="col-xl-4 col-lg-5">
+    <div class="card shadow mb-4">
+      <!-- Card Header - Dropdown -->
+      <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+        <h4 class="m-0 font-weight-bold text-primary">Save Session</h4>
+        <div class="dropdown no-arrow">
+          <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="far fa-question-circle text-gray-400"></i>
+          </a>
+          <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+            <div class="card-body">
+            Before connecting to the cloud, input a valid path to export session to a .csv file.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card-body">
+          <form id="new_save_form" class="d-none d-sm-inline-block form-inline mr-auto my-md-0">
+            {% csrf_token %}
+            <div class="input-group">
+              <input id="save_file_field" class="form-control bg-light border-0 small" name="file_path" type="text" placeholder="Enter filepath" aria-label="path" aria-describedby="basic-addon2""></input>
+              <div class="input-group-append">
+                <button class="btn btn-primary" type="submit">
+                  <a type="button" name="save_file_btn" id="save_file_btn" class="text">Save</a>
+                </button>
+              </div>
+              <!-- <div id='message'>Initial text</div> -->
+            </div>
+          </form>
+        <!--
+        <div class="checkbox check-export">
+          <input type="checkbox">
+        </div>
+        -->
+
+      </div>
+
+    </div>
+  </div>
+
+<script type="text/javascript" src ="{% static "js/jquery.min.js" %}"></script>
+
+<script type="text/javascript">
+  $(document).on('submit', '#new_save_form', function(e) {
+      e.preventDefault();
+
+      $.ajax({
+        type:'POST',
+        url:'save',
+        data:{
+          file_path:$('#save_file_field').val(),
+          csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+        },
+        success:function() {
+          alert("Success")
+          //$('#message').html("<h2>Contact Form Submitted!</h2>")
+        }
+      })
+  })
+
+</script>
+
+
+
+<!-- <script src ="{% static "js//jquery//dist//jquery.min.js" %}"></script> -->
+<!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+<!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->

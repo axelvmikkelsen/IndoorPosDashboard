@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+  {% block title %}
+    <h1 class="h1 mb-0 text-gray-800" style="margin-left: 10px">Dashboard</h1>
+  {% endblock %}
+
+  {% block javascript %}
+
+  {% endblock %}
+
+
+  {% block content %}
+
+    <!--
+      Connection
+      text
+      Btn:
+      <div class="my-2"></div>
+      <a href="#" class="btn btn-primary btn-icon-split">
+        <span class="icon text-white-50">
+          <i class="fas fa-arrow-right"></i>
+        </span>
+        <span class="text">Split Button Primary</span>
+      </a>
+
+
+      Save Session
+    -->
+  <div class="container-fluid">
+    <div class="row">
+      {% include "dash_html/connection.html" %}
+
+      {% include "dash_html/save.html" %}
+    </div>
+
+      {% include "dash_html/tag_overview.html" %}
+  </div>
+
+
+
+    <!-- <script type="text/javascript" src ="{% static "js/jquery.min.js" %}"></script> -->
+    <script src="{% static "vendor/datatables/jquery.dataTables.min.js" %}"></script>
+    <script src="{% static "vendor/datatables/dataTables.bootstrap4.min.js" %}"></script>
+
+
+  {% endblock %}

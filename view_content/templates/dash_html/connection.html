@@ -1,0 +1,91 @@
+{% load staticfiles %}
+
+<div class="col-xl-4 col-lg-7">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+      <h4 class="m-0 font-weight-bold text-primary">Connection</h4>
+      <div class="dropdown no-arrow">
+        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="far fa-question-circle text-gray-400"></i>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in" aria-labelledby="dropdownMenuLink">
+          <div class="card-body">
+          Connects to the Pozyx cloud service and retrieves active tags positional data.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card-body">
+      <div>
+        <div id="own_you_both">
+          {% if status %}
+            <div id="make_conn_div">
+              Status:
+              Connected <i class="fas fa-wifi" id="con_status" style="color: #10E843"></i>
+              <div class="my-3"></div>
+              <!-- {% csrf_token %} -->
+              <button class="btn btn-danger" id="disconnect_btn" type="button">
+                <a type="button" class="text">Disconnect</a>
+              </button>
+            </div>
+          {% else %}
+            <div id="make_disconn_div">
+              Status:
+              Not Connected <i class="fas fa-wifi" id="discon_status" style="color: #F52A2A"></i>
+              <div class="my-3"></div>
+              <!-- {% csrf_token %} -->
+              <button class="btn btn-primary" id="connect_btn" type="button">
+                Connect
+              </button>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- <a type="button"  class="text">Connect to Cloud</a> -->
+
+<script type="text/javascript" src ="{% static "js/jquery.min.js" %}"></script>
+
+<script type="text/javascript">
+  $('#connect_btn').on('click', function() {
+    $.ajax({
+      type:'POST',
+      url:'connection',
+      data:{
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+      },
+      success:function(data) {
+        if (data.status) {
+          $("#own_you_both" ).load(" #make_conn_div");
+          alert("Connected")
+        } else {
+          alert("Couldn't connect")
+        }
+      }
+    })
+  })
+</script>
+
+<script type="text/javascript">
+  $('#disconnect_btn').on('click', function() {
+    $.ajax({
+      type:'POST',
+      url:'disconnection',
+      data:{
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+      },
+      success:function(data) {
+        if (!data.status) {
+          $("#own_you_both" ).load(" #make_disconn_div");
+          alert("Disconnected successfully")
+        } else {
+          alert("An error occured")
+        }
+      }
+    })
+  })
+</script>

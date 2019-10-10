@@ -1,0 +1,79 @@
+<!-- Earnings (Monthly) Card Example -->
+{% load staticfiles %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-s font-weight-bold text-primary text-uppercase mb-1">Times Logged</div>
+              <div id="loggings" class="h4 mb-0 font-weight-bold text-gray-800">---</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clipboard fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-s font-weight-bold text-info text-uppercase mb-1"># of active tags</div>
+              <div id="numoftags" class="h4 mb-0 font-weight-bold text-gray-800">---</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-tags fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+              <div class="text-s font-weight-bold text-warning text-uppercase mb-1">Time Connected</div>
+              <div id="sessiontime" class="h4 mb-0 font-weight-bold text-gray-800">---</div>
+            </div>
+            <div class="col-auto">
+              <i class="fas fa-clock fa-2x text-gray-300"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <script src ="{% static "js/jquery.min.js" %}"></script> -->
+
+<!-- <script>
+  var cacheData;
+  var data = $('#sessiontime').html()
+  var auto_refresh = setInterval(
+  function() {
+    .ajax({
+      url: 'sessioncard',
+      type: 'POST',
+      data: {
+        data,
+        csrfmiddlewaretoken:$('input[name=csrfmiddlewaretoken]').val()
+      dataType: html,
+      success: function(data) {
+        if (data !== cacheData){
+          cacheData = data;
+          $('#sessiontime').html(data);
+        }
+      }
+    })
+  }, 5000);
+
+</script> -->

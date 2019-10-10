@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+  {% block title %}
+    <h1 class="h1 mb-0 text-gray-800" style="margin-left: 10px">Parameters</h1>
+  {% endblock %}
+
+  {% block content %}
+
+
+    <!-- Floor row -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Current Floor</h4>
+          </div>
+          <div class="card-body">
+            <div class="col-lg-6">
+                <div class="card mb-4">
+                  <div class="card-header">
+                    {{ floor.name }}
+                  </div>
+                  <div class="card-body">
+                    <p>Width [X]: {{ floor.x_end}}</p>
+                    <p>Length [Y]: {{ floor.y_end}}</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+<style>
+
+</style>
+
+    <!-- Zone row -->
+    <div class="row">
+      <div class="col-lg-6">
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h4 class="m-0 font-weight-bold text-primary">Zones</h4>
+          </div>
+          <div class="card-body">
+            {% if zones %}
+
+              {% for zone in zones %}
+                <div class="col-lg-6">
+                    <div class="card mb-4 border-bottom-info">
+                      <div class="card-header">
+                        {{ zone.name }}
+                      </div>
+                      <div class="card-body">
+                        <p>X<sub>start</sub> = {{ zone.x_start }}  X<sub>end</sub> = {{ zone.x_end }}</p>
+                        <p>Y<sub>start</sub> = {{ zone.y_start }}  Y<sub>end</sub> = {{ zone.y_end }}
+                      </div>
+                    </div>
+                </div>
+
+              {% endfor %}
+            {% else %}
+              <ul>No zones available</ul>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+  {% endblock %}
