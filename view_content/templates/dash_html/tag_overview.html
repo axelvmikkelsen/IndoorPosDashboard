@@ -84,7 +84,9 @@
 <script type="text/javascript" src ="{% static "js/jquery.min.js" %}"></script>
 
 <script type="text/javascript">
+
   $('#retrieve_btn').on('click', function() {
+    window.setInterval(clickitagain, 5000);
     $.ajax({
       type:'POST',
       url:'collect_tags',
@@ -112,7 +114,7 @@
             numoftags = data.tags.length
             sessiontime = Math.round(data.tags[0][1])
             loggings = data.logcount
-            $("#sessiontime").replaceWith(sessiontime)
+            $("#sessiontime").html(sessiontime)
             $("#loggings").html(loggings)
             $("#numoftags").html(numoftags)
           }
@@ -123,4 +125,8 @@
       }
     })
   })
+
+  function clickitagain() {
+    $('#retrieve_btn').click();
+  }
 </script>
