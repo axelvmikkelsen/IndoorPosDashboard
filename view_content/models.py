@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.translation import gettext_lazy
 from django.core.validators import MaxValueValidator, MinValueValidator
 from django.forms.fields import DateTimeField
+from datetime import datetime
 from django.utils import timezone
 
 class Room(models.Model):
@@ -60,6 +61,7 @@ class Tag(models.Model):
 
 class TagLocation(models.Model):
     tagID = models.ForeignKey('Tag',on_delete=models.CASCADE, null=False)
+    sessionID = models.ForeignKey('Session',on_delete=models.CASCADE,null=False)
     timestamp = models.FloatField(default=0)
     x_pos = models.FloatField(default=0)
     y_pos = models.FloatField(default=0)
@@ -91,11 +93,10 @@ class Connection(models.Model):
 class Session(models.Model):
     sessionID = models.AutoField(primary_key=True)
     name = models.CharField(max_length=15)
-    duration = models.PositiveIntegerField()
-    status = models.BooleanField(default=True)
+    date = models.DateTimeField(default=datetime.now(), blank=True)
 
     def __str__(self):
         return self.name
 
     class Meta:
-        verbose_name_plural = gettext_lazy('Sessions')
+        verbose_name_plural = gettext_lazy('Session')

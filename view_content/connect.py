@@ -6,7 +6,7 @@ import json
 import random
 
 import time
-from .models import Connection, Tag, TagLocation
+from .models import Connection, Session, Tag, TagLocation
 from threading import Thread
 from . import tags
 from . import views
@@ -188,7 +188,7 @@ def on_message_cloud_1(client, userdata, msg):
             except:
                 # this will occur when there is no valid coordinates
                 pass
-        views.sent_data(arr)
+        traad = Thread(target = views.sent_data(arr))
         #print(globalBS.views.current_stack)
     except Exception as e:
         print("No valid tag data: {}".format(e))

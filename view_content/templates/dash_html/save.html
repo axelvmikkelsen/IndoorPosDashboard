@@ -3,7 +3,7 @@
     <div class="card shadow mb-4">
       <!-- Card Header - Dropdown -->
       <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-        <h4 class="m-0 font-weight-bold text-primary">Save Session</h4>
+        <h4 class="m-0 font-weight-bold text-primary">Session</h4>
         <div class="dropdown no-arrow">
           <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="far fa-question-circle text-gray-400"></i>
@@ -17,13 +17,15 @@
       </div>
 
       <div class="card-body">
+          Establish session for logging data, connect first!
+          <div class="my-3"></div>
           <form id="new_save_form" class="d-none d-sm-inline-block form-inline mr-auto my-md-0">
             {% csrf_token %}
             <div class="input-group">
-              <input id="save_file_field" class="form-control bg-light border-0 small" name="file_path" type="text" placeholder="Enter filepath" aria-label="path" aria-describedby="basic-addon2""></input>
+              <input id="save_file_field" class="form-control bg-light border-0 small" name="file_path" type="text" placeholder="Session name" aria-label="path" aria-describedby="basic-addon2""></input>
               <div class="input-group-append">
-                <button class="btn btn-primary" type="submit">
-                  <a type="button" name="save_file_btn" id="save_file_btn" class="text">Save</a>
+                <button class="btn btn-success" type="submit">
+                  <a type="button" name="save_file_btn" id="save_file_btn" class="text">Start Logging!</a>
                 </button>
               </div>
               <!-- <div id='message'>Initial text</div> -->
